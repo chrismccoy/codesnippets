@@ -12,8 +12,6 @@
  */
 get_header(); ?>
 
-<?php codesnippets_display_sidebar('before');?>
-
 <div class="lg:col-span-2">
 
     <section class="mb-12 text-center">
@@ -43,7 +41,5 @@ get_header(); ?>
 
     <?php codesnippets_custom_pagination(); ?>
 </div>
-
-<?php codesnippets_display_sidebar('after');?>
 
 <?php get_footer(); ?>

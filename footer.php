@@ -10,6 +10,8 @@
  * @since 1.0.0
  */
 
+codesnippets_display_sidebar('after');
+
 ?>
 			</div>
                     </section>

@@ -7,7 +7,6 @@
  * @package CodeSnippets
  * @since 1.0.0
  */
-
 ?>
 <aside class="h-fit space-y-8 lg:col-span-1 lg:sticky lg:top-8">
 

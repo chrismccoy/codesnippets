@@ -38,5 +38,5 @@ get_header(); ?>
     <?php codesnippets_custom_pagination(); ?>
 </div>
 
-<?php get_sidebar(); ?>
+<?php codesnippets_display_sidebar('after');?>
 <?php get_footer(); ?>

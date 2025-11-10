@@ -72,6 +72,7 @@ function codesnippets_enqueue_assets()
 		true
 	);
 }
+
 add_action('wp_enqueue_scripts', 'codesnippets_enqueue_assets');
 
 /**
@@ -104,6 +105,7 @@ function codesnippets_register_taxonomy()
 
 	register_taxonomy('language', ['post'], $args);
 }
+
 add_action('init', 'codesnippets_register_taxonomy', 0);
 
 /**
@@ -190,6 +192,7 @@ function codesnippets_modify_search_query($query)
 	}
 	$query->set('post_type', ['post']);
 }
+
 add_filter('pre_get_posts', 'codesnippets_modify_search_query');
 
 /**
@@ -218,6 +221,7 @@ function codesnippets_nice_search_redirect()
 		exit();
 	}
 }
+
 add_action('template_redirect', 'codesnippets_nice_search_redirect');
 
 /**
@@ -259,4 +263,89 @@ function codesnippets_tags($post = null)
 		esc_html__('tags:', 'codesnippets'),
 		implode('', $tag_links)
 	);
+}
+
+/**
+ * Registers custom theme options in the WordPress Customizer.
+ *
+ * This function adds a new section for 'Theme Layout' where users can
+ * control settings like the sidebar position.
+ *
+ * @since 1.0.0
+ *
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+ */
+function codesnippets_customize_register($wp_customize)
+{
+    // Add a new section for Theme Layout settings.
+    $wp_customize->add_section('theme_layout_section', [
+        'title'    => __('Theme Layout', 'codesnippets'),
+        'priority' => 30,
+    ]);
+
+    // Add the setting to store the sidebar position.
+    $wp_customize->add_setting('sidebar_position', [
+        'default'           => 'right',
+        'sanitize_callback' => 'codesnippets_sanitize_sidebar_position',
+    ]);
+
+    // Add the control (the UI element) for the setting.
+    $wp_customize->add_control('sidebar_position_control', [
+        'label'       => __('Sidebar Position', 'codesnippets'),
+        'section'     => 'theme_layout_section',
+        'settings'    => 'sidebar_position',
+        'type'        => 'radio',
+        'choices'     => [
+            'right' => __('Right Sidebar', 'codesnippets'),
+            'left'  => __('Left Sidebar', 'codesnippets'),
+        ],
+    ]);
+}
+add_action('customize_register', 'codesnippets_customize_register');
+
+/**
+ * Sanitizes the sidebar position setting.
+ *
+ * Ensures that the value saved to the database is either 'left' or 'right'.
+ *
+ * @since 1.0.0
+ *
+ * @param string $input The unsanitized input from the Customizer.
+ * @return string The sanitized input ('left' or 'right').
+ */
+function codesnippets_sanitize_sidebar_position($input)
+{
+    $valid = ['left', 'right'];
+    if (in_array($input, $valid, true)) {
+        return $input;
+    }
+    return 'right'; // Return the default if input is invalid.
+}
+
+/**
+ * Conditionally displays the sidebar based on its location and the Customizer setting.
+ *
+ * The sidebar is never displayed on single post pages.
+ *
+ * @since 1.0.0
+ *
+ * @param string $location The location where the function is called. Accepts 'before' or 'after'.
+ */
+function codesnippets_display_sidebar($location)
+{
+    // On single post pages, never show a sidebar.
+    if (is_singular('post')) {
+        return;
+    }
+
+    // Get the user's saved preference, defaulting to 'right'.
+    $sidebar_position = get_theme_mod('sidebar_position', 'right');
+
+    // Show the sidebar only if the call location matches the user's preference.
+    if (
+        ('before' === $location && 'left' === $sidebar_position) ||
+        ('after' === $location && 'right' === $sidebar_position)
+    ) {
+        get_sidebar();
+    }
 }

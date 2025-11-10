@@ -10,8 +10,9 @@
  * @package CodeSnippets
  * @since 1.0.0
  */
-
 get_header(); ?>
+
+<?php codesnippets_display_sidebar('before');?>
 
 <div class="lg:col-span-2">
 
@@ -43,5 +44,6 @@ get_header(); ?>
     <?php codesnippets_custom_pagination(); ?>
 </div>
 
-<?php get_sidebar(); ?>
+<?php codesnippets_display_sidebar('after');?>
+
 <?php get_footer(); ?>

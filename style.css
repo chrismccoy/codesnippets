@@ -1,0 +1,22 @@
+/*
+Theme Name:       Code Snippets
+Theme URI:        https://github.com/chrismccoy/codesnippets
+Author:           Chris McCoy
+Author URI:       https://github.com/chrismccoy
+Description:      A modern, minimalist WordPress theme built for developers to showcase and share code snippets with style and clarity. Powered by Tailwind CSS.
+Version:          1.0.0
+Requires at least: 6.0
+Tested up to:     6.8.3
+Requires PHP:     7.4
+License:          GNU General Public License v2 or later
+License URI:      https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:      codesnippets
+Domain Path:      /languages
+Tags:             custom-post-type, code, snippets, developer, syntax-highlighting, dark-mode, tailwind-css, blog, one-column, right-sidebar, translation-ready, responsive-layout
+*/
+
+/*
+This file is required by WordPress to identify the theme.
+The actual theme styles are located in /assets/css/app.css and are compiled from
+the source file /assets/css/app.scss using Tailwind CSS.
+*/

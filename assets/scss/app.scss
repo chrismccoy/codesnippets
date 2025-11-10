@@ -1,0 +1,123 @@
+/**
+ * Main stylesheet for the CodeSnippets theme.
+ *
+ * This file contains custom styles that build upon the Tailwind CSS framework.
+ *
+ * @package CodeSnippets
+ * @since 1.0.0
+ */
+
+/*
+ * Tailwind Directives
+ * -------------------------------------------------------------------------- */
+
+/* Inject Tailwind's base styles, component classes, and utility classes. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ *  Component Styles
+ * -------------------------------------------------------------------------- */
+
+/* Base styles for the snippet card component. */
+.snippet-card {
+  transition: all 0.15s ease-out;
+}
+
+/* Adds a retro pop-out effect on hover for snippet cards. */
+.snippet-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0px #000;
+}
+
+/* Overrides the hover box-shadow color for dark mode. */
+.dark .snippet-card:hover {
+  box-shadow: 8px 8px 0px #facc15; /* yellow-400 */
+}
+
+/*
+ * Custom Scrollbar Styles
+ * -------------------------------------------------------------------------- */
+
+/* Sets the width and height of the scrollbar. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Styles the scrollbar track (the background). */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-left: 2px solid #000;
+}
+
+/* Dark mode override for the scrollbar track. */
+.dark ::-webkit-scrollbar-track {
+  background: #1f2937; /* gray-800 */
+  border-left: 2px solid #4b5563; /* gray-600 */
+}
+
+/* Styles the scrollbar thumb (the draggable part). */
+::-webkit-scrollbar-thumb {
+  background: #facc15; /* yellow-400 */
+  border: 2px solid #000;
+}
+
+/* Dark mode override for the scrollbar thumb border. */
+.dark ::-webkit-scrollbar-thumb {
+  border-color: #4b5563; /* gray-600 */
+}
+
+/* Changes the thumb color on hover for better user feedback. */
+::-webkit-scrollbar-thumb:hover {
+  background: #fde047; /* yellow-300 */
+}
+
+/*
+ * Helper/Utility Classes
+ * -------------------------------------------------------------------------- */
+
+/* Utility class to prevent content overflow, often used with modals or dynamic content. */
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/*
+ * Print Styles
+ * -------------------------------------------------------------------------- */
+
+/* This media query contains styles that are only applied when the page is printed. */
+@media print {
+  /* Utility class to hide elements from the printed version of the page. */
+  .print-hidden {
+    display: none !important;
+  }
+
+  /* Hides non-essential elements like header, sidebar, and footer during printing. */
+  body > .mx-auto > header,
+  body > .mx-auto > main > section > aside,
+  body > .mx-auto > footer {
+    display: none !important;
+  }
+
+  /* Resets body and main element spacing for optimal use of paper. */
+  body,
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Styles for code blocks to ensure they print correctly. */
+  pre[class*="language-"] {
+    -webkit-print-color-adjust: exact; /* Ensures syntax highlighting colors are printed. */
+    print-color-adjust: exact;
+    border: 1px solid #ccc !important; /* Adds a simple border for clarity. */
+    box-shadow: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    overflow: visible !important; /* Allows content to break out of the container if needed. */
+    white-space: pre-wrap; /* Wraps long lines of code. */
+    word-break: break-all; /* Breaks long words or strings to prevent overflow. */
+  }
+}

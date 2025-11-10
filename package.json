@@ -1,0 +1,12 @@
+{
+  "name": "codesnippets-theme",
+  "version": "1.0.0",
+  "description": "Tailwind CSS workflow for the CodeSnippets WordPress theme.",
+  "scripts": {
+    "dev": "tailwindcss -i ./assets/scss/app.scss -o ./assets/css/app.css --watch",
+    "build": "tailwindcss -i ./assets/scss/app.scss -o ./assets/css/app.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

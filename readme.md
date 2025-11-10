@@ -42,7 +42,7 @@ The theme is designed to treat each standard WordPress post as a code snippet.
 
 ### ⚙️ Development Workflow & Compiling Styles
 
-This theme uses [Tailwind CSS](https://tailwindcss.com/) for styling. The final stylesheet (`/assets/css/app.css`) is a compiled and minified file. You should not edit this file directly. Instead, you should edit the source stylesheet (`/assets/scss/app.css`) and then compile your changes using the provided npm scripts.
+This theme uses [Tailwind CSS](https://tailwindcss.com/) for styling. The final stylesheet (`/assets/css/app.css`) is a compiled and minified file. You should not edit this file directly. Instead, you should edit the source stylesheet (`/assets/scss/app.scss`) and then compile your changes using the provided npm scripts.
 
 #### Prerequisites
 
